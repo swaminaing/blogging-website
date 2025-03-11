@@ -50,4 +50,4 @@ This project is all about building a modern, interactive blogging website using 
 4. If using `data.json`, run a local server (Live Server on VS Code is great for this).
 5. Log in to start creating, editing, and deleting posts!
 
-That’s it! Thanks for your attention 🎉
+That's a wrap! Thank you for your time and attention—much appreciated!
