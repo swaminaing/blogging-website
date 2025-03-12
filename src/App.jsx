@@ -1,11 +1,23 @@
 import React from "react";
 import Navbar from "./components/Navigation Bar/Navbar";
 import "./App.css";
+import Aside from "./components/Aside/Aside";
+import MainContent from "./components/Main/MainContent";
 
 function App() {
   return (
     <main>
       <Navbar />
+      <section>
+        <div className="grid grid-cols-4">
+          <div className="col-span-1 bg-gray-200 border-r p-4">
+            <Aside />
+          </div>
+          <div className="col-span-3 bg-gray-200 p-4">
+            <MainContent />
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

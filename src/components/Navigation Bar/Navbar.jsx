@@ -5,7 +5,7 @@ const styles = {
   nav: "bg-transparent flex justify-evenly align-center border-b p-5",
   logo: "text-xl font-bold cursor-pointer",
   button:
-    "bg-transparent hover:bg-[#626262] hover:text-[#eee] hover:border-[#626262] transition-all duration-200 ease-linear border-1 rounded-full px-5 py-1 cursor-pointer",
+    "bg-[] hover:bg-[#d0eb97] hover:border-[#626262] transition-all duration-200 ease-linear border-1 rounded-full px-5 py-1 cursor-pointer",
 };
 
 function Navbar() {
