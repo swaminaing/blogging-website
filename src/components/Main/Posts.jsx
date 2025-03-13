@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const styles = {
   container: "w-full border-b",
@@ -6,21 +6,49 @@ const styles = {
   postWrapper: "p-5",
   author: "text-sm font-semibold",
   metaInfo: "text-[12px] text-[#626262] font-semibold",
-  title: "text-2xl font-bold mt-2",
-  content: "text-sm/6 my-3",
-  button: "w-full bg-[#333] text-[#eee] rounded-md py-2 cursor-pointer mt-5",
+  title: "text-2xl font-bold mt-4",
+  content: "text-sm/6 line-clamp-3 my-3",
+  full_content: "text-sm/6 my-3",
+  profileImage: "rounded-full border-1 inline me-1",
+  button: "text-[#626262] hover:text-black underline cursor-pointer mt-2",
 };
 
-function Posts({ posts }) {
+function Posts({ posts, users }) {
+  const [viewStates, setViewStates] = useState({});
+
+  const toggleView = (postId) => {
+    setViewStates((prev) => ({
+      ...prev,
+      [postId]: !prev[postId], // Toggle the specific post
+    }));
+  };
+
   return (
     <div>
       {posts.map((post) => (
+        // container
         <div key={post.id} className={styles.container}>
           <div className={styles.innerContainer}>
             <div className={styles.postWrapper}>
+              {/* user profile  */}
               <div>
-                <span className={styles.author}>{post.author}</span>
+                {users.map((user) => {
+                  if (user.user_id === post.author_id) {
+                    return (
+                      <div className="mb-2">
+                        <img
+                          src={user.profile_image}
+                          width={35}
+                          className={styles.profileImage}
+                          alt="profile_image"
+                        />{" "}
+                        <span>{user.name}</span>
+                      </div>
+                    );
+                  }
+                })}
               </div>
+              {/* post info  */}
               <div className={styles.metaInfo}>
                 <span>{post.created_at}</span>
                 <span className="mx-2">{post.reading_time}</span>
@@ -28,13 +56,25 @@ function Posts({ posts }) {
                   <span key={index}>#{tag}</span>
                 ))}
               </div>
+              {/* title  */}
               <div className={styles.title}>
                 <h3>{post.title}</h3>
               </div>
-              <div className={styles.content}>
+              {/* content  */}
+              <div
+                className={
+                  viewStates[post.id] ? styles.full_content : styles.content
+                }
+              >
                 <p>{post.content}</p>
               </div>
-              <button className={styles.button}>View Details</button>
+              {/* view details button  */}
+              <button
+                className={styles.button}
+                onClick={() => toggleView(post.id)}
+              >
+                {viewStates[post.id] ? "Hide Details" : "View Details"}
+              </button>
             </div>
           </div>
         </div>
