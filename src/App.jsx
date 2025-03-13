@@ -10,7 +10,10 @@ function App() {
       <Navbar />
       <section>
         <div className="grid grid-cols-4">
-          <div className="col-span-1 border-r p-4">
+          <div
+            className="col-span-1 bg-white
+           border-r p-4"
+          >
             <Aside />
           </div>
           <div className="col-span-3">
