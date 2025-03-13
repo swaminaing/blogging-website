@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
+import { getUsers } from "../../utils/http";
 
 function Aside() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    async function getUsersProfile() {
+      const response = await getUsers();
+
+      setUsers(response);
+    }
+
+    getUsersProfile();
+  }, []);
   return (
     <div>
       <div className="relative mb-5">
@@ -40,24 +52,27 @@ function Aside() {
             autoplay={{ delay: 2000, disableOnInteraction: false }}
             modules={[Autoplay]}
           >
-            <SwiperSlide>
-              <div className="p-3 bg-gray-800 rounded-lg text-white">
-                <h4>John Smith</h4>
-                <span className="text-[13px] text-gray-400">Writer</span>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="p-3 bg-gray-800 rounded-lg text-white">
-                <h4>Emily Johnson</h4>
-                <span className="text-[13px] text-gray-400">Editor</span>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="p-3 bg-gray-800 rounded-lg text-white">
-                <h4>Michael Brown</h4>
-                <span className="text-[13px] text-gray-400">Blogger</span>
-              </div>
-            </SwiperSlide>
+            {" "}
+            <>
+              {users.map((user) => {
+                return (
+                  <SwiperSlide key={user.user_id}>
+                    <div className="p-4 bg-gray-800 rounded-lg text-white">
+                      <img
+                        src={user.profile_image}
+                        width={45}
+                        className="rounded-full"
+                        alt=""
+                      />
+                      <h4>{user.name}</h4>
+                      <span className="text-[13px] text-gray-400">
+                        {user.profession}
+                      </span>
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
+            </>
           </Swiper>
         </div>
       </div>

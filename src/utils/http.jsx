@@ -14,3 +14,20 @@ export async function getPosts() {
     throw error;
   }
 }
+
+export async function getUsers() {
+  const url = "http://localhost:3000/users";
+
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error("Something's wrong while calling api");
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    throw error;
+  }
+}

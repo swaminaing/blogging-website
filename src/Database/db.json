@@ -195,5 +195,37 @@
                 "Retail"
             ]
         }
+    ],
+    "users": [
+        {
+            "user_id": "1",
+            "name": "Jane Doe",
+            "profession": "Software Engineer",
+            "profile_image": "https://randomuser.me/api/portraits/women/1.jpg"
+        },
+        {
+            "user_id": "2",
+            "name": "John Smith",
+            "profession": "Energy Analyst",
+            "profile_image": "https://randomuser.me/api/portraits/men/2.jpg"
+        },
+        {
+            "user_id": "3",
+            "name": "Alice Johnson",
+            "profession": "Marketing Specialist",
+            "profile_image": "https://randomuser.me/api/portraits/women/3.jpg"
+        },
+        {
+            "user_id": "4",
+            "name": "Bob Brown",
+            "profession": "Healthcare Consultant",
+            "profile_image": "https://randomuser.me/api/portraits/men/4.jpg"
+        },
+        {
+            "user_id": "5",
+            "name": "Charlie Davis",
+            "profession": "Financial Analyst",
+            "profile_image": "https://randomuser.me/api/portraits/men/5.jpg"
+        }
     ]
 }
