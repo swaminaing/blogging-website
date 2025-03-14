@@ -1,0 +1,16 @@
+.form-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  .form-label {
+    color: #626262;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .form-group:focus-within .form-label {
+    color: #d97706; /* Amber-700 */
+  }
+  

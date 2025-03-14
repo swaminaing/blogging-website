@@ -33,7 +33,7 @@ function Aside() {
           <p className="underline">Menu</p>
           <ul className="text-[#626262] mt-2">
             <li>
-              <a href="#" className="text-[13px] hover:text-black">
+              <a href="#" className="text-[13px] hover:text-amber-600">
                 Dashboard +
               </a>
             </li>
