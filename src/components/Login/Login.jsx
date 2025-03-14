@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getUsers } from "../../utils/http";
+import { getUsers } from "../../utils/http.js";
 import Navbar from "../Navigation Bar/Navbar";
 
 const styles = {

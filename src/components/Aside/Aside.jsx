@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
-import { getUsers } from "../../utils/http";
+import { getUsers } from "../../utils/http.js";
 
 function Aside() {
   const [users, setUsers] = useState([]);
@@ -29,7 +29,7 @@ function Aside() {
             className="rounded-full inline"
             alt=""
           />
-          <span className="text-black ms-2">{loginedUser.name}</span>
+          <span className="text-black capitalize ms-2">{loginedUser.name}</span>
           <span className="text-[13px] text-[#626262] mt-2 block">
             {loginedUser.profession}
           </span>

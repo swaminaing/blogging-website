@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getPosts, getUsers } from "../../utils/http";
+import { getPosts, getUsers } from "../../utils/http.js";
 import Posts from "./Posts";
 
 function MainContent() {

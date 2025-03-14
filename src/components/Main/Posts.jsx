@@ -4,11 +4,11 @@ const styles = {
   container: "w-full border-b",
   innerContainer: "max-w-11/12 mx-auto",
   postWrapper: "p-5",
-  author: "text-sm font-semibold",
+  author: "text-md capitalize",
   metaInfo: "text-[12px] text-[#626262] font-semibold",
   title: "text-2xl font-bold mt-4",
-  content: "text-sm/6 line-clamp-3 my-3",
-  full_content: "text-sm/6 my-3",
+  content: "text-sm/6 indent-8 text-justify line-clamp-3 my-3",
+  full_content: "text-sm/6 indent-8 text-justify my-3",
   profileImage: "rounded-full border-1 inline me-1",
   button: "text-[#626262] hover:text-black underline cursor-pointer mt-2",
 };
@@ -42,7 +42,7 @@ function Posts({ posts, users }) {
                           className={styles.profileImage}
                           alt="profile_image"
                         />{" "}
-                        <span>{user.name}</span>
+                        <span className={styles.author}>{user.name}</span>
                       </div>
                     );
                   }
