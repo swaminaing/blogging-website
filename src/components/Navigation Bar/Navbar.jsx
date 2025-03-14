@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SearchBar from "../Search/SearchBar";
+import { NavLink } from "react-router";
 
 // static tailwind css is left outside to prevent re-creation on every re-render
 const styles = {
@@ -15,16 +16,21 @@ function Navbar() {
   return (
     <nav className={styles.nav}>
       <div>
-        <h2 className={styles.logo}>BlogSite</h2>
+        <NavLink to="/">
+          <h2 className={styles.logo}>BlogSite</h2>
+        </NavLink>
       </div>
       <div>
         <SearchBar />
       </div>
       <div>
-        <button className={styles.button}>
-          {loginedUser ? "logout" : "login"}
-        </button>
-
+        {loginedUser == null ? (
+          <NavLink to="/login">
+            <button className={styles.button}>Login</button>
+          </NavLink>
+        ) : (
+          <button className={styles.button}>Logout</button>
+        )}
         <button className={styles.button}>Sign Up</button>
       </div>
     </nav>
