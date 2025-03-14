@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import SearchBar from "../Search/SearchBar";
 
 // static tailwind css is left outside to prevent re-creation on every re-render
 const styles = {
@@ -15,6 +16,9 @@ function Navbar() {
     <nav className={styles.nav}>
       <div>
         <h2 className={styles.logo}>BlogSite</h2>
+      </div>
+      <div>
+        <SearchBar />
       </div>
       <div>
         <button className={styles.button}>
