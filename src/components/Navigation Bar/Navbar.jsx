@@ -8,9 +8,9 @@ const styles = {
     "bg-[] hover:bg-amber-600 hover:border-amber-600 transition-all duration-200 ease-linear border-1 rounded-full px-5 py-1 mx-2 cursor-pointer",
 };
 
-function Navbar() {
-  const [isLogin, setIsLogin] = useState(true);
+const loginedUser = JSON.parse(localStorage.getItem("loginedUser"));
 
+function Navbar() {
   return (
     <nav className={styles.nav}>
       <div>
@@ -18,7 +18,7 @@ function Navbar() {
       </div>
       <div>
         <button className={styles.button}>
-          {isLogin === true ? "Login" : "Logout"}
+          {loginedUser ? "logout" : "login"}
         </button>
 
         <button className={styles.button}>Sign Up</button>

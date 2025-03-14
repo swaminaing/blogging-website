@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getUsers } from "../../utils/http";
 import Navbar from "../Navigation Bar/Navbar";
 
 const styles = {
@@ -18,12 +19,36 @@ function Login() {
     password: "",
   });
 
+  const [users, setUsers] = useState({});
+
+  useEffect(() => {
+    async function getUsersProfile() {
+      const response = await getUsers();
+
+      setUsers(response);
+    }
+
+    getUsersProfile();
+  }, []);
+
   function handleSubmit(e) {
     e.preventDefault();
-    if (loginedUser.username && loginedUser.password) {
-      localStorage.setItem("loginedUser", JSON.stringify(loginedUser));
-    } else {
-      alert("Please enter both username and password.");
+
+    let isUserValid = false;
+
+    users.map((user) => {
+      if (
+        user.name === loginedUser.username &&
+        user.password === loginedUser.password
+      ) {
+        console.log("Login successful");
+        localStorage.setItem("loginedUser", JSON.stringify(user));
+        isUserValid = true;
+      }
+    });
+
+    if (!isUserValid) {
+      console.log("Invalid username or password");
     }
 
     setLoginedUser({
@@ -72,7 +97,7 @@ function Login() {
             <input
               name="password"
               value={loginedUser.password}
-              type="password"
+              // type="password"
               id="password"
               className={styles.formInput}
               onChange={handleChange}

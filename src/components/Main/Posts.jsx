@@ -35,7 +35,7 @@ function Posts({ posts, users }) {
                 {users.map((user) => {
                   if (user.user_id === post.author_id) {
                     return (
-                      <div className="mb-2">
+                      <div key={user.user_id} className="mb-2">
                         <img
                           src={user.profile_image}
                           width={35}

@@ -7,6 +7,7 @@ import { getUsers } from "../../utils/http";
 
 function Aside() {
   const [users, setUsers] = useState([]);
+  const loginedUser = JSON.parse(localStorage.getItem("loginedUser"));
 
   useEffect(() => {
     async function getUsersProfile() {
@@ -22,8 +23,16 @@ function Aside() {
       <div className="relative mb-5">
         <div className="bg-black opacity-1.5 absolute rounded-xl inset-0"></div>
         <div className="relative z-10 p-4">
-          <h3 className="text-black">Jane Doe</h3>
-          <span className="text-[13px] text-[#626262]">Developer</span>
+          <img
+            src={loginedUser.profile_image}
+            width={30}
+            className="rounded-full inline"
+            alt=""
+          />
+          <span className="text-black ms-2">{loginedUser.name}</span>
+          <span className="text-[13px] text-[#626262] mt-2 block">
+            {loginedUser.profession}
+          </span>
         </div>
       </div>
 
