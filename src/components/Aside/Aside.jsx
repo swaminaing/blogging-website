@@ -7,7 +7,7 @@ import { getUsers } from "../../utils/http.js";
 
 function Aside() {
   const [users, setUsers] = useState([]);
-  const loginedUser = JSON.parse(localStorage.getItem("loginedUser"));
+  const loginedUser = JSON.parse(localStorage.getItem("loginedUser")) || null;
 
   useEffect(() => {
     async function getUsersProfile() {
@@ -24,14 +24,20 @@ function Aside() {
         <div className="bg-black opacity-1.5 absolute rounded-xl inset-0"></div>
         <div className="relative z-10 p-4">
           <img
-            src={loginedUser.profile_image}
+            src={
+              loginedUser !== null
+                ? loginedUser.profile_image
+                : "../public/userprofile.jpg"
+            }
             width={30}
             className="rounded-full inline"
-            alt=""
+            alt="profile photo"
           />
-          <span className="text-black capitalize ms-2">{loginedUser.name}</span>
+          <span className="text-black capitalize ms-2">
+            {loginedUser !== null ? loginedUser.name : "Unknown"}
+          </span>
           <span className="text-[13px] text-[#626262] mt-2 block">
-            {loginedUser.profession}
+            {loginedUser !== null ? loginedUser.profession : "unknown"}
           </span>
         </div>
       </div>

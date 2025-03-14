@@ -5,6 +5,7 @@ import Posts from "./Posts";
 function MainContent() {
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
+  const loginedUser = localStorage.getItem("loginedUser");
 
   useEffect(() => {
     async function getBlogPosts() {
@@ -24,9 +25,11 @@ function MainContent() {
     getBlogPosts();
   }, []);
 
+  const filteredPosts = loginedUser === null ? posts.slice(0, 10) : posts;
+
   return (
     <>
-      <Posts posts={posts} users={users} />
+      <Posts posts={filteredPosts} users={users} />
     </>
   );
 }
