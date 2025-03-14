@@ -23,9 +23,12 @@ function Posts({ posts, users }) {
     }));
   };
 
+  // sorting posts from latest to oldest
+  const sortedPosts = [...posts].sort();
+
   return (
     <div>
-      {posts.map((post) => (
+      {sortedPosts.map((post) => (
         // container
         <div key={post.id} className={styles.container}>
           <div className={styles.innerContainer}>
