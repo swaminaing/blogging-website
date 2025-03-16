@@ -21,8 +21,6 @@ function Navbar() {
     window.location.reload();
   }
 
-  console.log(isLoggedin);
-
   return (
     <nav className={styles.nav}>
       <div>

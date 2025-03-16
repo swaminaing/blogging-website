@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getPosts, getUsers } from "../../utils/http.js";
 import Posts from "./Posts";
+import { MyBlogContext } from "../../context/blog-contex.jsx";
 
 function MainContent() {
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
   const loginedUser = localStorage.getItem("loginedUser");
+
+  const { postsByTag } = useContext(MyBlogContext);
 
   useEffect(() => {
     async function getBlogPosts() {
@@ -29,7 +32,12 @@ function MainContent() {
 
   return (
     <>
-      <Posts posts={filteredPosts} users={users} />
+      <Posts
+        posts={
+          !postsByTag || postsByTag.length <= 0 ? filteredPosts : postsByTag
+        }
+        users={users}
+      />
     </>
   );
 }
