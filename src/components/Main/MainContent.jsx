@@ -25,7 +25,7 @@ function MainContent() {
     getBlogPosts();
   }, []);
 
-  const filteredPosts = loginedUser === null ? posts.slice(0, 10) : posts;
+  const filteredPosts = loginedUser == null ? posts.slice(0, 10) : posts;
 
   return (
     <>

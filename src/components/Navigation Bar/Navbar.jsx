@@ -10,9 +10,19 @@ const styles = {
     "bg-[] hover:bg-amber-600 hover:border-amber-600 transition-all duration-200 ease-linear border-1 rounded-full px-5 py-1 mx-2 cursor-pointer",
 };
 
-const loginedUser = JSON.parse(localStorage.getItem("loginedUser"));
-
 function Navbar() {
+  const [isLoggedin, setIsLoggedin] = useState(
+    !!localStorage.getItem("loginedUser")
+  );
+
+  function handleLogoutButton() {
+    localStorage.removeItem("loginedUser");
+    setIsLoggedin(false);
+    window.location.reload();
+  }
+
+  console.log(isLoggedin);
+
   return (
     <nav className={styles.nav}>
       <div>
@@ -24,12 +34,14 @@ function Navbar() {
         <SearchBar />
       </div>
       <div>
-        {loginedUser == null ? (
+        {isLoggedin == false ? (
           <NavLink to="/login">
             <button className={styles.button}>Login</button>
           </NavLink>
         ) : (
-          <button className={styles.button}>Logout</button>
+          <button className={styles.button} onClick={handleLogoutButton}>
+            Logout
+          </button>
         )}
         <button className={styles.button}>Sign Up</button>
       </div>
