@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { getUsers } from "../../utils/http.js";
+import React, { useContext, useState } from "react";
 import Navbar from "../Navigation Bar/Navbar";
+import { MyBlogContext } from "../../context/blog-contex.jsx";
 
 const styles = {
   container: "w-full h-[90vh] flex justify-center items-center",
@@ -20,18 +20,8 @@ function Login() {
     password: "",
   });
 
-  // fetch users from db.json(json-server)
-  const [users, setUsers] = useState({});
-
-  useEffect(() => {
-    async function getUsersProfile() {
-      const response = await getUsers();
-
-      setUsers(response);
-    }
-
-    getUsersProfile();
-  }, []);
+  // fetch users from context
+  const { users } = useContext(MyBlogContext);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -101,7 +91,7 @@ function Login() {
             <input
               name="password"
               value={loginedUser.password}
-              // type="password"
+              type="password"
               id="password"
               className={styles.formInput}
               onChange={handleChange}

@@ -1,18 +1,31 @@
 import { createContext, useEffect, useState } from "react";
-import { getPosts } from "../utils/http";
+import { getPosts, getUsers } from "../utils/http";
 
 // context creation
 const MyBlogContext = createContext();
 
 export default function BlogContextProvider({ children }) {
+  // to remember the state of users, posts and postsByTag
+  const [users, setUsers] = useState([]);
   const [posts, setPosts] = useState([]);
   const [postsByTag, setPostsByTag] = useState([]);
 
+  // side effect: calling db.json api
   useEffect(() => {
+    // fetch posts from db.json(json-server)
     async function fetchPosts() {
       const results = await getPosts();
       setPosts(results);
     }
+
+    // fetch users from db.json(json-server)
+    async function getUsersProfile() {
+      const response = await getUsers();
+
+      setUsers(response);
+    }
+
+    getUsersProfile();
 
     fetchPosts();
   }, []);
@@ -31,7 +44,7 @@ export default function BlogContextProvider({ children }) {
   }
 
   return (
-    <MyBlogContext.Provider value={{ searchedPosts, postsByTag }}>
+    <MyBlogContext.Provider value={{ searchedPosts, postsByTag, posts, users }}>
       {children}
     </MyBlogContext.Provider>
   );

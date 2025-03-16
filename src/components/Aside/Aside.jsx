@@ -1,25 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useContext } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
-import { getUsers } from "../../utils/http.js";
+import { MyBlogContext } from "../../context/blog-contex.jsx";
 
 function Aside() {
-  // to remember the state of users
-  const [users, setUsers] = useState([]);
+  // get users from db.json(json-server) by using context value
+  const { users } = useContext(MyBlogContext);
   // fetch and validate login user from local storage
   const loginedUser = JSON.parse(localStorage.getItem("loginedUser")) || null;
-
-  useEffect(() => {
-    async function getUsersProfile() {
-      const response = await getUsers();
-
-      setUsers(response);
-    }
-
-    getUsersProfile();
-  }, []);
 
   return (
     <div>
