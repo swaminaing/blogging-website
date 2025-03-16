@@ -36,6 +36,7 @@ export default function BlogContextProvider({ children }) {
       setPostsByTag(posts);
     }
 
+    // filter posts by tag
     const filteredPosts = posts.filter((post) =>
       post.tags.some((tag) => tag.toLowerCase() === searchTerm.toLowerCase())
     );
