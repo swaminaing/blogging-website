@@ -6,7 +6,9 @@ import { Autoplay } from "swiper/modules";
 import { getUsers } from "../../utils/http.js";
 
 function Aside() {
+  // to remember the state of users
   const [users, setUsers] = useState([]);
+  // fetch and validate login user from local storage
   const loginedUser = JSON.parse(localStorage.getItem("loginedUser")) || null;
 
   useEffect(() => {
@@ -18,6 +20,7 @@ function Aside() {
 
     getUsersProfile();
   }, []);
+
   return (
     <div>
       <div className="relative mb-5">
@@ -60,6 +63,7 @@ function Aside() {
         <div className="bg-black opacity-1.5 absolute rounded-xl inset-0"></div>
         <div className="relative z-10 p-4">
           <p className="underline mb-3">Authors</p>
+          {/* Swiper library */}
           <Swiper
             spaceBetween={10}
             slidesPerView={1}

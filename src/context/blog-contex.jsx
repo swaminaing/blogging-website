@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { getPosts } from "../utils/http";
 
+// context creation
 const MyBlogContext = createContext();
 
 export default function BlogContextProvider({ children }) {
@@ -16,6 +17,7 @@ export default function BlogContextProvider({ children }) {
     fetchPosts();
   }, []);
 
+  // function to filter the posts user searched
   function searchedPosts(searchTerm) {
     if (!searchTerm) {
       setPostsByTag(posts);

@@ -11,10 +11,12 @@ const styles = {
 };
 
 function Navbar() {
+  // initialize logined user. (it will return true if user logged in otherwise false)
   const [isLoggedin, setIsLoggedin] = useState(
     !!localStorage.getItem("loginedUser")
   );
 
+  // function for logout button
   function handleLogoutButton() {
     localStorage.removeItem("loginedUser");
     setIsLoggedin(false);

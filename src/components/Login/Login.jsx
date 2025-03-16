@@ -14,11 +14,13 @@ const styles = {
 };
 
 function Login() {
+  // initialize login user with empty object
   const [loginedUser, setLoginedUser] = useState({
     username: "",
     password: "",
   });
 
+  // fetch users from db.json(json-server)
   const [users, setUsers] = useState({});
 
   useEffect(() => {
@@ -36,6 +38,7 @@ function Login() {
 
     let isUserValid = false;
 
+    // validation for username and password
     users.map((user) => {
       if (
         user.name === loginedUser.username &&
@@ -48,7 +51,7 @@ function Login() {
     });
 
     if (!isUserValid) {
-      console.log("Invalid username or password");
+      alert("Invalid username or password");
     }
 
     setLoginedUser({
@@ -63,6 +66,7 @@ function Login() {
       [e.target.name]: e.target.value,
     }));
   }
+
   return (
     <div>
       <Navbar />
