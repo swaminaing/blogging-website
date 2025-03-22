@@ -20,6 +20,7 @@ function MainContent() {
           !postsByTag || postsByTag.length <= 0 ? filteredPosts : postsByTag
         }
         users={users}
+        loginedUser={loginedUser}
       />
     </>
   );

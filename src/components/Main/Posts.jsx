@@ -13,8 +13,12 @@ const styles = {
   button: "text-[#626262] hover:text-black underline cursor-pointer mt-2",
 };
 
-function Posts({ posts, users }) {
-  const [viewStates, setViewStates] = useState({});
+function Posts({ posts, users, loginedUser }) {
+  const [viewStates, setViewStates] = useState({}); // State for toggling view details
+  const [moreButtons, setMoreButtons] = useState({}); // state for toggling more buttons
+
+  // parse loginedUser json
+  const loginUser = JSON.parse(loginedUser);
 
   const toggleView = (postId) => {
     setViewStates((prev) => ({
@@ -26,6 +30,13 @@ function Posts({ posts, users }) {
   // sorting posts from latest to oldest
   const sortedPosts = [...posts].sort();
 
+  // function for handling toggle more buttons (edit and delete)
+  function toggleMoreButtons(postId) {
+    setMoreButtons((prev) => ({
+      [postId]: !prev[postId],
+    }));
+  }
+
   return (
     <div>
       {sortedPosts.map((post) => (
@@ -33,6 +44,56 @@ function Posts({ posts, users }) {
         <div key={post.id} className={styles.container}>
           <div className={styles.innerContainer}>
             <div className={styles.postWrapper}>
+              <div className="w-ful flex justify-end items-center mb-2">
+                <div className="relative text-[12px] w-[50px]">
+                  <button
+                    className="font-bold w-full text-end cursor-pointer"
+                    onClick={() => toggleMoreButtons(post.id)}
+                  >
+                    :
+                  </button>
+                  {moreButtons[post.id] && (
+                    <ul className="absolute bg-white shadow-md rounded-md mt-1">
+                      <li className="border-b border-gray-200 hover:bg-amber-50 py-2 px-3">
+                        {loginUser !== null &&
+                        loginUser.user_id === post.author_id ? (
+                          <button
+                            className="w-full cursor-pointer"
+                            onClick={() => console.log("Edit")}
+                          >
+                            Edit
+                          </button>
+                        ) : (
+                          <button
+                            className="w-full cursor-not-allowed"
+                            disabled
+                          >
+                            Edit
+                          </button>
+                        )}
+                      </li>
+                      <li className="cursor-pointer hover:bg-amber-50 py-2 px-3">
+                        {loginUser !== null &&
+                        loginUser.user_id === post.author_id ? (
+                          <button
+                            className="w-full cursor-pointer"
+                            onClick={() => console.log("Delete")}
+                          >
+                            Delete
+                          </button>
+                        ) : (
+                          <button
+                            className="w-full cursor-not-allowed"
+                            disabled
+                          >
+                            Delete
+                          </button>
+                        )}
+                      </li>
+                    </ul>
+                  )}
+                </div>
+              </div>
               {/* user profile  */}
               <div>
                 {users.map((user) => {
