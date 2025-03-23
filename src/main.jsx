@@ -4,19 +4,41 @@ import "./index.css";
 import App from "./App.jsx";
 import Login from "./components/Login/Login.jsx";
 import Register from "./components/Register/Register.jsx";
-import { BrowserRouter, Route, Routes } from "react-router";
+import {
+  BrowserRouter,
+  createBrowserRouter,
+  Route,
+  RouterProvider,
+  Routes,
+} from "react-router";
 import BlogContextProvider from "./context/blog-contex.jsx";
+import NewPost from "./components/New Post/NewPost.jsx";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "/newpost",
+        element: <NewPost />,
+      },
+    ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
-      <BlogContextProvider>
-        <Routes>
-          <Route index element={<App />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
-      </BlogContextProvider>
-    </BrowserRouter>
+    <BlogContextProvider>
+      <RouterProvider router={router} />
+    </BlogContextProvider>
   </StrictMode>
 );

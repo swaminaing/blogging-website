@@ -3,8 +3,11 @@ import Navbar from "./components/Navigation Bar/Navbar";
 import "./App.css";
 import Aside from "./components/Aside/Aside";
 import MainContent from "./components/Main/MainContent";
+import { Outlet, useLocation } from "react-router";
 
 function App() {
+  const currentLocation = useLocation();
+  console.log(currentLocation);
   return (
     <main>
       <Navbar />
@@ -15,7 +18,11 @@ function App() {
           </div>
 
           <div className="col-span-3 w-full">
-            <MainContent />
+            {currentLocation.pathname === "/newpost" ? (
+              <Outlet />
+            ) : (
+              <MainContent />
+            )}
           </div>
         </div>
       </section>

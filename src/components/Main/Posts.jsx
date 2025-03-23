@@ -52,7 +52,7 @@ function Posts({ posts, users, loginedUser }) {
 
   return (
     <div>
-      {blogPosts.sort().map((post) => (
+      {blogPosts.map((post) => (
         // container
         <div key={post.id} className={styles.container}>
           <div className={styles.innerContainer}>

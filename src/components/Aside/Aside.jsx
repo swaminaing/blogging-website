@@ -4,6 +4,7 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
 import { MyBlogContext } from "../../context/blog-contex.jsx";
+import { Link } from "react-router";
 
 const styles = {
   container: "relative mb-5",
@@ -14,7 +15,7 @@ const styles = {
   userProfession: "text-[13px] text-[#626262] mt-2 block",
   menuText: "underline mb-3",
   menuList: "text-[#626262] mt-2",
-  menuItem: "text-[13px] hover:text-amber-600",
+  menuItem: "text-[13px] hover:text-amber-600 cursor-pointer",
   authorsContainer: "relative",
   swiperContainer: "w-full p-2",
   authorCard: "p-4 bg-gray-800 rounded-lg capitalize text-white",
@@ -50,20 +51,22 @@ function Aside() {
         </div>
       </div>
 
+      {/* aside menu bar  */}
       <div className={styles.container}>
         <div className={styles.overlay}></div>
         <div className={styles.content}>
           <p className={styles.menuText}>Menu</p>
           <ul className={styles.menuList}>
             <li>
-              <a href="#" className={styles.menuItem}>
-                Dashboard +
-              </a>
+              <Link to={"/newpost"} className={styles.menuItem}>
+                Create New Post +
+              </Link>
             </li>
           </ul>
         </div>
       </div>
 
+      {/* author carousel */}
       <div className={styles.authorsContainer}>
         <div className={styles.overlay}></div>
         <div className={styles.content}>
