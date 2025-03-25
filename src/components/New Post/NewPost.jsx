@@ -2,7 +2,6 @@ import { Link } from "react-router";
 
 function NewPost() {
   const loginedUser = JSON.parse(localStorage.getItem("loginedUser")) || null;
-  console.log(loginedUser);
 
   return (
     <div className="w-full h-[100vh] flex flex-col justify-center items-center">
@@ -15,7 +14,11 @@ function NewPost() {
         <div className="form-group">
           <div className="mb-3">
             <img
-              src={loginedUser.profile_image}
+              src={
+                loginedUser !== null
+                  ? loginedUser.profile_image
+                  : "../public/userprofile.jpg"
+              }
               width={30}
               className="rounded-full inline"
               alt=""

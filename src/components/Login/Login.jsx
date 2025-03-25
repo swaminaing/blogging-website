@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import Navbar from "../Navigation Bar/Navbar";
 import { MyBlogContext } from "../../context/blog-contex.jsx";
+import { Link } from "react-router";
 
 const styles = {
   container: "w-full h-[90vh] flex justify-center items-center",
