@@ -133,7 +133,9 @@ function Posts({ posts, users, loginedUser }) {
                 <span>{post.created_at}</span>
                 <span className="mx-2">{post.reading_time}</span>
                 {post.tags.map((tag, index) => (
-                  <span key={index}>#{tag}</span>
+                  <span className="capitalize" key={index}>
+                    #{tag}
+                  </span>
                 ))}
               </div>
               {/* title  */}
